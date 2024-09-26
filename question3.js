@@ -1,20 +1,21 @@
 // Question 3
-// How can we remove nodes with a specific value from a linked list, and what should be returned as the new head of the modified list? The given linked list has a head node [1,2,6,3,4,5,6] and the specified value is 6. The expected output is a modified list with nodes [1,2,3,4,5]. 
+// How can we remove nodes with a specific value from a linked list, and what should be returned as the new head of the modified list? The given linked list has a head node [1,2,6,3,4,5,6] and the specified value is 6. The expected output is a modified list with nodes [1,2,3,4,5].
 
- 
 class ListNodeVal {
-  constructor(val = 0, next = null) {
-    this.val = val;
+  // creates foundation of building a linked list
+  constructor(value = 0, next = null) {
+    this.val = value;
     this.next = next;
   }
 }
 
-function removeElements(head, val) {
+function removeElements(head, value) {
+  // base case, stops when head equals null
   if (head === null) {
     return null;
   }
-  head.next = removeElements(head.next, val);
-  return head.val === val ? head.next : head;
+  head.next = removeElements(head.next, value);
+  return head.val === value ? head.next : head;
 }
 
 // Create the linked list
@@ -31,12 +32,12 @@ const newVal = 6;
 const newHead = removeElements(head, newVal);
 
 // Print the modified list values
-let curr = newHead;
+let current = newHead;
 const result = [];
 
-while (curr !== null) {
-  result.push(curr.val);
-  curr = curr.next;
+while (current !== null) {
+  result.push(current.val);
+  current = current.next;
 }
 
 console.log(result); // Output: [1, 2, 3, 4, 5]
